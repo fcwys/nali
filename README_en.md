@@ -5,14 +5,8 @@
 <h4 align="center">An offline tool for querying IP geographic information and CDN provider.</h4>
 
 <p align="center">
-  <a href="https://github.com/zu1k/nali/actions">
-    <img src="https://img.shields.io/github/workflow/status/zu1k/nali/Go?style=flat-square" alt="Github Actions">
-  </a>
-  <a href="https://goreportcard.com/report/github.com/zu1k/nali">
-    <img src="https://goreportcard.com/badge/github.com/zu1k/nali?style=flat-square">
-  </a>
-  <a href="https://github.com/zu1k/nali/releases">
-    <img src="https://img.shields.io/github/release/zu1k/nali/all.svg?style=flat-square">
+  <a href="https://github.com/fcwys/nali/releases">
+    <img src="https://img.shields.io/github/release/fcwys/nali/all.svg?style=flat-square">
   </a>
 </p>
 
@@ -319,11 +313,6 @@ export NALI_HOME=/home/nali
 - [Cobra CLI库](https://github.com/spf13/cobra)
 - [Nali-cli](https://github.com/SukkaW/nali-cli)
 
-Thanks to JetBrains for the Open Source License 
-
-<a href="https://www.jetbrains.com/?from=nali">
-  <img src="assets/GoLand.svg">
-</a>
 
 ## Author
 
@@ -331,7 +320,3 @@ Thanks to JetBrains for the Open Source License
 
 > Blog [zu1k.com](https://zu1k.com) · GitHub [@zu1k](https://github.com/zu1k) · Twitter [@zu1k_lv](https://twitter.com/zu1k_lv) · Telegram Channel [@peekfun](https://t.me/peekfun)
 
-
-## Stargazers over time
-
-[![Stargazers over time](https://starchart.cc/zu1k/nali.svg)](https://starchart.cc/zu1k/nali)

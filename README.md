@@ -5,14 +5,8 @@
 <h4 align="center">一个查询IP地理信息和CDN提供商的离线终端工具.</h4>
 
 <p align="center">
-  <a href="https://github.com/zu1k/nali/actions">
-    <img src="https://img.shields.io/github/workflow/status/zu1k/nali/Go?style=flat-square" alt="Github Actions">
-  </a>
-  <a href="https://goreportcard.com/report/github.com/zu1k/nali">
-    <img src="https://goreportcard.com/badge/github.com/zu1k/nali?style=flat-square">
-  </a>
-  <a href="https://github.com/zu1k/nali/releases">
-    <img src="https://img.shields.io/github/release/zu1k/nali/all.svg?style=flat-square">
+  <a href="https://github.com/fcwys/nali/releases">
+    <img src="https://img.shields.io/github/release/fcwys/nali/all.svg?style=flat-square">
   </a>
 </p>
 
@@ -327,18 +321,9 @@ export NALI_HOME=/var/nali
 - [Cobra CLI库](https://github.com/spf13/cobra)
 - [Nali-cli](https://github.com/SukkaW/nali-cli)
 
-感谢 JetBrains 提供开源项目免费License 
-
-<a href="https://www.jetbrains.com/?from=nali">
-  <img src="assets/GoLand.svg">
-</a>
-
 ## 作者
 
 **Nali** © [zu1k](https://github.com/zu1k), 遵循 [MIT](./LICENSE) 证书.<br>
 
 > Blog [zu1k.com](https://zu1k.com) · GitHub [@zu1k](https://github.com/zu1k) · Twitter [@zu1k_lv](https://twitter.com/zu1k_lv) · Telegram Channel [@peekfun](https://t.me/peekfun)
 
-## Star统计
-
-[![Stargazers over time](https://starchart.cc/zu1k/nali.svg)](https://starchart.cc/zu1k/nali)
