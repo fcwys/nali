@@ -16,10 +16,10 @@ func Download(filePath string, urls ...string) (data []byte, err error) {
 		return
 	}
 
-	if len(filePath) == 1 {
-		if err := common.SaveFile(filePath, data); err == nil {
-			log.Println("文件下载成功:", filePath)
-		}
+	//if len(filePath) == 1 {
+	if err := common.SaveFile(filePath, data); err == nil {
+		log.Println("文件下载成功:", filePath)
 	}
+	//}
 	return
 }

@@ -44,6 +44,7 @@ However the C version has too few functions, and the js version is too big and t
 - CDN provider query
 - Full platform support
 - Color print
+- Web API support
 
 ## Install
 
