@@ -42,13 +42,13 @@ var serverCmd = &cobra.Command{
 
 		//启动echo web服务
 		ec := echo.New()
-		//路径方式查询
-		ec.GET("/:ip", func(c echo.Context) error {
-			ip := c.Param("ip")
+		//参数方式查询
+		ec.GET("/", func(c echo.Context) error {
+			ip := c.QueryParam("ip")
 			if ip == "help" {
 				reinfo := &Errinfo{
 					Code: -1,
-					Msg:  "Help: ?ip=223.5.5.5 or /223.5.5.5 (Default: your ip)",
+					Msg:  "Param: ip=223.5.5.5 or /223.5.5.5 (Default: visitor ip)",
 				}
 				return c.JSON(http.StatusOK, reinfo)
 			} else if ip == "" {
@@ -58,7 +58,6 @@ var serverCmd = &cobra.Command{
 			args = nil
 			args = append(args, ip)
 			res := entity.ParseLine(strings.Join(args, " "))
-			//addr := strings.Split(strings.Replace(res[0].Info, "\t", " ", -1), " ")
 			//判断是否有结果返回
 			if res[0].Info == "" {
 				reinfo := &Errinfo{
@@ -76,13 +75,13 @@ var serverCmd = &cobra.Command{
 			}
 
 		})
-		//参数方式查询
-		ec.GET("/", func(c echo.Context) error {
-			ip := c.QueryParam("ip")
+		//路径方式查询
+		ec.GET("/:ip", func(c echo.Context) error {
+			ip := c.Param("ip")
 			if ip == "help" {
 				reinfo := &Errinfo{
 					Code: -1,
-					Msg:  "Param: ip=223.5.5.5 or /223.5.5.5 (Default: visitor ip)",
+					Msg:  "Help: ?ip=223.5.5.5 or /223.5.5.5 (Default: your ip)",
 				}
 				return c.JSON(http.StatusOK, reinfo)
 			} else if ip == "" {
@@ -92,6 +91,7 @@ var serverCmd = &cobra.Command{
 			args = nil
 			args = append(args, ip)
 			res := entity.ParseLine(strings.Join(args, " "))
+			//addr := strings.Split(strings.Replace(res[0].Info, "\t", " ", -1), " ")
 			//判断是否有结果返回
 			if res[0].Info == "" {
 				reinfo := &Errinfo{
