@@ -48,7 +48,7 @@ var serverCmd = &cobra.Command{
 			if ip == "help" {
 				reinfo := &Errinfo{
 					Code: -1,
-					Msg:  "Param: ip=223.5.5.5 or /223.5.5.5 (Default: visitor ip)",
+					Msg:  "Param: /223.5.5.5 or ip=223.5.5.5 (Default: visitor ip)",
 				}
 				return c.JSON(http.StatusOK, reinfo)
 			} else if ip == "" {
@@ -81,7 +81,7 @@ var serverCmd = &cobra.Command{
 			if ip == "help" {
 				reinfo := &Errinfo{
 					Code: -1,
-					Msg:  "Help: ?ip=223.5.5.5 or /223.5.5.5 (Default: your ip)",
+					Msg:  "Param: /223.5.5.5 or ip=223.5.5.5 (Default: visitor ip)",
 				}
 				return c.JSON(http.StatusOK, reinfo)
 			} else if ip == "" {
