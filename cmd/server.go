@@ -29,14 +29,6 @@ var serverCmd = &cobra.Command{
 	Long:    `Start web api server`,
 	Example: "nali server --port 8080",
 	Run: func(cmd *cobra.Command, args []string) {
-		/*
-
-			ip := res[0].Text
-			addr := strings.Split(strings.Replace(res[0].Info,"\t"," ",-1)," ")
-			country := addr[0]
-			area := addr[1]
-			fmt.Println(ip,country,area)
-		*/
 		port, _ := cmd.Flags().GetString("port")
 		port = ":" + port
 
@@ -44,7 +36,9 @@ var serverCmd = &cobra.Command{
 		ec := echo.New()
 		//参数方式查询
 		ec.GET("/", func(c echo.Context) error {
-			ip := c.QueryParam("ip")
+			//设置响应头信息
+			c.Response().Header().Add("Server", "nginx/1.22.0")
+      ip := c.QueryParam("ip")
 			if ip == "help" {
 				reinfo := &Errinfo{
 					Code: -1,
@@ -77,6 +71,8 @@ var serverCmd = &cobra.Command{
 		})
 		//路径方式查询
 		ec.GET("/:ip", func(c echo.Context) error {
+      //设置响应头信息
+			c.Response().Header().Add("Server", "nginx/1.22.0")
 			ip := c.Param("ip")
 			if ip == "help" {
 				reinfo := &Errinfo{
