@@ -69,6 +69,7 @@ var serverCmd = &cobra.Command{
 		//参数方式查询
 		ec.GET("/", func(c *gin.Context) {
 			//设置响应头信息
+			c.Header("Access-Control-Allow-Origin", "*")
 			c.Header("Server", "nginx/1.22.0")
 			ip := c.Query("ip")
 			cname := ""
@@ -124,6 +125,7 @@ var serverCmd = &cobra.Command{
 		//路径查询方式
 		ec.GET("/:ip", func(c *gin.Context) {
 			//设置响应头信息
+			c.Header("Access-Control-Allow-Origin", "*")
 			c.Header("Server", "nginx/1.22.0")
 			ip := c.Param("ip")
 			cname := ""
