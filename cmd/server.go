@@ -70,7 +70,7 @@ var serverCmd = &cobra.Command{
 		ec.GET("/", func(c *gin.Context) {
 			//设置响应头信息
 			c.Header("Access-Control-Allow-Origin", "*")
-			c.Header("Server", "nginx/1.22.0")
+			c.Header("Server", "nginx")
 			ip := c.Query("ip")
 			cname := ""
 			if ip == "help" {
@@ -126,7 +126,7 @@ var serverCmd = &cobra.Command{
 		ec.GET("/:ip", func(c *gin.Context) {
 			//设置响应头信息
 			c.Header("Access-Control-Allow-Origin", "*")
-			c.Header("Server", "nginx/1.22.0")
+			c.Header("Server", "nginx")
 			ip := c.Param("ip")
 			cname := ""
 			if ip == "favicon.ico" {
