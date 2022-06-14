@@ -67,7 +67,7 @@ var serverCmd = &cobra.Command{
 		ec.GET("/", func(c echo.Context) error {
 			//设置响应头信息
 			c.Response().Header().Add("Access-Control-Allow-Origin", "*")
-			c.Response().Header().Add("Server", "nginx/1.22.0")
+			c.Response().Header().Add("Server", "nginx")
 			ip := c.QueryParam("ip")
 			cname := ""
 			if ip == "help" {
@@ -120,7 +120,7 @@ var serverCmd = &cobra.Command{
 		ec.GET("/:ip", func(c echo.Context) error {
 			//设置响应头信息
 			c.Response().Header().Add("Access-Control-Allow-Origin", "*")
-			c.Response().Header().Add("Server", "nginx/1.22.0")
+			c.Response().Header().Add("Server", "nginx")
 			ip := c.Param("ip")
 			cname := ""
 			if ip == "favicon.ico" {
