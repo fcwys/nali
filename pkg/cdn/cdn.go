@@ -6,16 +6,29 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"regexp"
 	"strings"
 
+	"github.com/zu1k/nali/pkg/download"
+	"github.com/zu1k/nali/pkg/re"
 	"gopkg.in/yaml.v2"
 )
 
-type CDN struct {
-	Data CDNDist
+var DownloadUrls = []string{
+	"https://cdn.jsdelivr.net/gh/4ft35t/cdn/src/cdn.yml",
+	"https://raw.githubusercontent.com/4ft35t/cdn/master/src/cdn.yml",
+	"https://raw.githubusercontent.com/SukkaLab/cdn/master/src/cdn.yml",
 }
 
-type CDNDist map[string]CDNResult
+type CDN struct {
+	Map   map[string]CDNResult
+	ReMap []CDNReTuple
+}
+
+type CDNReTuple struct {
+	*regexp.Regexp
+	CDNResult
+}
 
 type CDNResult struct {
 	Name string `yaml:"name"`
@@ -27,13 +40,11 @@ func (r CDNResult) String() string {
 }
 
 func NewCDN(filePath string) (*CDN, error) {
-	cdnDist := make(CDNDist)
-	cdnData := make([]byte, 0)
-
+	fileData := make([]byte, 0)
 	_, err := os.Stat(filePath)
 	if err != nil && os.IsNotExist(err) {
 		log.Println("文件不存在，尝试从网络获取最新CDN数据库")
-		cdnData, err = Download(filePath)
+		fileData, err = download.Download(filePath, DownloadUrls...)
 		if err != nil {
 			return nil, err
 		}
@@ -44,33 +55,48 @@ func NewCDN(filePath string) (*CDN, error) {
 		}
 		defer cdnFile.Close()
 
-		cdnData, err = ioutil.ReadAll(cdnFile)
+		fileData, err = ioutil.ReadAll(cdnFile)
 		if err != nil {
 			return nil, err
 		}
 	}
 
-	err = yaml.Unmarshal(cdnData, &cdnDist)
+	cdnMap := make(map[string]CDNResult)
+	err = yaml.Unmarshal(fileData, &cdnMap)
 	if err != nil {
 		return nil, err
 	}
-	return &CDN{Data: cdnDist}, nil
+	cdnReMap := make([]CDNReTuple, 0)
+	for k, v := range cdnMap {
+		if re.MaybeRegexp(k) {
+			rex, err := regexp.Compile(k)
+			if err != nil {
+				log.Printf("[CDN Database] entry %s not a valid regexp", k)
+			}
+			cdnReMap = append(cdnReMap, CDNReTuple{
+				Regexp:    rex,
+				CDNResult: v,
+			})
+		}
+	}
+
+	return &CDN{Map: cdnMap, ReMap: cdnReMap}, nil
 }
 
 func (db CDN) Find(query string, params ...string) (result fmt.Stringer, err error) {
 	baseCname := parseBaseCname(query)
 	for _, domain := range baseCname {
 		if domain != "" {
-			cdnResult, found := db.Data[domain]
+			cdnResult, found := db.Map[domain]
 			if found {
 				return cdnResult, nil
 			}
 		}
 
-		if strings.Contains(domain, "kunlun") {
-			return CDNResult{
-				Name: "阿里云 CDN",
-			}, nil
+		for _, entry := range db.ReMap {
+			if entry.Regexp.MatchString(domain) {
+				return entry.CDNResult, nil
+			}
 		}
 	}
 
