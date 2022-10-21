@@ -10,7 +10,7 @@ import (
 	"github.com/zu1k/nali/pkg/entity"
 )
 
-//查询到的IP信息
+// 查询到的IP信息
 type Ipinfo struct {
 	Code int    `json:"code" xml:"code"`
 	Ip   string `json:"ip" xml:"ip"`
@@ -18,13 +18,13 @@ type Ipinfo struct {
 	Cdn  string `json:"cdn" xml:"cdn"`
 }
 
-//错误状态信息
+// 错误状态信息
 type Errinfo struct {
 	Code int    `json:"code" xml:"code"`
 	Msg  string `json:"msg" xml:"msg"`
 }
 
-//解析cname
+// 解析cname
 func getCname(host string) string {
 	host = strings.TrimSpace(host)
 	cname, err := net.LookupCNAME(host)
@@ -40,7 +40,7 @@ func getCname(host string) string {
 	return strings.TrimRight(cname, ".")
 }
 
-//域名解析ip
+// 域名解析ip
 func getIp(host string) string {
 	host = strings.TrimSpace(host)
 	ipall, err := net.LookupIP(host)

@@ -13,6 +13,7 @@ import (
 	"golang.org/x/text/transform"
 
 	"github.com/zu1k/nali/internal/constant"
+	"github.com/zu1k/nali/pkg/common"
 	"github.com/zu1k/nali/pkg/entity"
 )
 
@@ -63,15 +64,16 @@ Find document on: https://github.com/zu1k/nali
 
 		if len(args) == 0 {
 			stdin := bufio.NewScanner(os.Stdin)
+			stdin.Split(common.ScanLines)
 			for stdin.Scan() {
 				line := stdin.Text()
 				if gbk {
 					line, _, _ = transform.String(simplifiedchinese.GBK.NewDecoder(), line)
 				}
-				if line == "quit" || line == "exit" {
+				if line := strings.TrimSpace(line); line == "quit" || line == "exit" {
 					return
 				}
-				_, _ = fmt.Fprintf(color.Output, "%s\n", entity.ParseLine(line).ColorString())
+				_, _ = fmt.Fprintf(color.Output, "%s", entity.ParseLine(line).ColorString())
 			}
 		} else {
 			_, _ = fmt.Fprintf(color.Output, "%s\n", entity.ParseLine(strings.Join(args, " ")).ColorString())

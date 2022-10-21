@@ -3,11 +3,13 @@ module github.com/zu1k/nali
 go 1.18
 
 require (
+	github.com/adrg/xdg v0.4.0
 	github.com/fatih/color v1.13.0
+	github.com/google/martian v2.1.0+incompatible
 	github.com/ip2location/ip2location-go/v9 v9.2.0
 	github.com/ipipdotnet/ipdb-go v1.3.1
-	github.com/labstack/echo/v4 v4.7.2
-	github.com/lionsoul2014/ip2region v2.2.0-release+incompatible
+	github.com/labstack/echo/v4 v4.9.1
+	github.com/lionsoul2014/ip2region/binding/golang v0.0.0-20221017063954-c5c24655eb63
 	github.com/oschwald/geoip2-golang v1.7.0
 	github.com/saracen/go7z v0.0.0-20191010121135-9c09b6bd7fda
 	github.com/spf13/cobra v1.4.0
@@ -21,7 +23,7 @@ require (
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/kr/pretty v0.3.0 // indirect
-	github.com/labstack/gommon v0.3.1 // indirect
+	github.com/labstack/gommon v0.4.0 // indirect
 	github.com/magiconair/properties v1.8.6 // indirect
 	github.com/mattn/go-colorable v0.1.12 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
@@ -40,7 +42,7 @@ require (
 	github.com/ulikunitz/xz v0.5.10 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasttemplate v1.2.1 // indirect
-	golang.org/x/crypto v0.0.0-20220525230936-793ad666bf5e // indirect
+	golang.org/x/crypto v0.0.0-20220411220226-7b82a4e95df4 // indirect
 	golang.org/x/net v0.0.0-20220412020605-290c469a71a5 // indirect
 	golang.org/x/sys v0.0.0-20220520151302-bc2c85ada10a // indirect
 	golang.org/x/tools v0.1.7 // indirect
