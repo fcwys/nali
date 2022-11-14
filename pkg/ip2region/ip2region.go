@@ -60,6 +60,7 @@ func (db Ip2Region) Find(query string, params ...string) (result fmt.Stringer, e
 			return nil, err
 		} else {
 		res=strings.ReplaceAll(res, "0|", "")
+		res=strings.ReplaceAll(res, "|0", "")
 			return wry.Result{
 				Country: strings.ReplaceAll(res, "|", " "),
 			}, nil
