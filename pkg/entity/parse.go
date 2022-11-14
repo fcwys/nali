@@ -3,7 +3,6 @@ package entity
 import (
 	"net/netip"
 	"sort"
-	"strings"
 	"github.com/zu1k/nali/internal/db"
 	"github.com/zu1k/nali/pkg/dbif"
 	"github.com/zu1k/nali/pkg/re"
