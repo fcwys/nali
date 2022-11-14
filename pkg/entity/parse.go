@@ -56,7 +56,9 @@ func ParseLine(line string) Entities {
 				})
 			}
 			e.Info = db.Find(dbif.QueryType(e.Type), e.Text)
-			e.Info = strings.Replace(e.Info, "|", " ", -1)
+			e.Info = strings.Replace(e.Info, " ", "", -1)		//替换空格
+			e.Info = strings.Replace(e.Info, "0|", "", -1)		//去除0数据
+			e.Info = strings.Replace(e.Info, "|", " ", -1)		//去除分隔符	
 			es = append(es, e)
 			idx = e.Loc[1]
 		}
