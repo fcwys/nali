@@ -3,7 +3,6 @@ package entity
 import (
 	"net/netip"
 	"sort"
-	"strings"
 	"github.com/zu1k/nali/internal/db"
 	"github.com/zu1k/nali/pkg/dbif"
 	"github.com/zu1k/nali/pkg/re"
@@ -56,9 +55,6 @@ func ParseLine(line string) Entities {
 				})
 			}
 			e.Info = db.Find(dbif.QueryType(e.Type), e.Text)
-			e.Info = strings.Replace(e.Info, " ", "", -1)		//替换空格
-			e.Info = strings.Replace(e.Info, "0|", "", -1)		//去除0数据
-			e.Info = strings.Replace(e.Info, "|", " ", -1)		//去除分隔符	
 			es = append(es, e)
 			idx = e.Loc[1]
 		}
