@@ -1,6 +1,7 @@
 package zxipv6wry
 
 import (
+	"errors"
 	"io"
 	"io/ioutil"
 	"log"
@@ -18,6 +19,12 @@ func Download(filePath ...string) (data []byte, err error) {
 		return
 	}
 
+	if !CheckFile(data) {
+		log.Printf("ZX IPv6数据库下载出错，请手动下载解压后保存到本地: %s \n", filePath)
+		log.Println("下载链接： https://ip.zxinc.org/ip.7z")
+		return nil, errors.New("数据库下载内容出错")
+	}
+
 	if len(filePath) == 1 {
 		if err := common.SaveFile(filePath[0], data); err == nil {
 			log.Println("已将最新的 ZX IPv6数据库 保存到本地:", filePath)
@@ -32,6 +39,9 @@ const (
 
 func getData() (data []byte, err error) {
 	data, err = common.GetHttpClient().Get(zx)
+	if err != nil {
+		return nil, err
+	}
 
 	file7z, err := os.CreateTemp("", "*")
 	if err != nil {

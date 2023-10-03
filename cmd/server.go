@@ -108,12 +108,12 @@ var serverCmd = &cobra.Command{
 			} else {
 				//判断是否有CDN信息返回
 				if cname != "" && res[2].Info != "" {
-					cname = strings.Replace(res[2].Info, "\t", " ", -1)
+					cname = strings.Replace(res[2].InfoText, "\t", " ", -1)
 				}
 				reinfo := &Ipinfo{
 					Code: 1,
 					Ip:   res[0].Text,
-					Addr: strings.Replace(res[0].Info, "\t", " ", -1),
+					Addr: strings.Replace(res[0].InfoText, "\t", " ", -1),
 					Cdn:  cname,
 				}
 				c.JSON(200, reinfo)
@@ -167,12 +167,12 @@ var serverCmd = &cobra.Command{
 			} else {
 				//判断是否有CDN信息返回
 				if cname != "" && res[2].Info != "" {
-					cname = strings.Replace(res[2].Info, "\t", " ", -1)
+					cname = strings.Replace(res[2].InfoText, "\t", " ", -1)
 				}
 				reinfo := &Ipinfo{
 					Code: 1,
 					Ip:   res[0].Text,
-					Addr: strings.Replace(res[0].Info, "\t", " ", -1),
+					Addr: strings.Replace(res[0].InfoText, "\t", " ", -1),
 					Cdn:  cname,
 				}
 				c.JSON(200, reinfo)
