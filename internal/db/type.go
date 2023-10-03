@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/zu1k/nali/pkg/cdn"
+	"github.com/zu1k/nali/pkg/common"
 	"github.com/zu1k/nali/pkg/dbif"
 	"github.com/zu1k/nali/pkg/geoip"
 	"github.com/zu1k/nali/pkg/ip2location"
@@ -52,7 +53,7 @@ func (d *DB) get() (db dbif.DB) {
 		panic("DB format not supported!")
 	}
 
-	if err != nil || db == nil {
+	if err != nil {
 		log.Fatalln("Database init failed:", err)
 	}
 
@@ -138,4 +139,9 @@ func getDbByName(name string) (db *DB) {
 
 	log.Fatalf("DB with name %s not found!\n", name)
 	return
+}
+
+type Result struct {
+	Source string
+	common.Result
 }

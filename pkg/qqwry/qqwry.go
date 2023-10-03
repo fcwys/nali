@@ -14,7 +14,10 @@ import (
 )
 
 var DownloadUrls = []string{
-	"https://99wry.cf/qqwry.dat",
+	"https://gh-release.zu1k.com/HMBSbige/qqwry/qqwry.dat", // redirect to HMBSbige/qqwry
+	// Other repo:
+	// https://github.com/HMBSbige/qqwry
+	// https://github.com/metowolf/qqwry.dat
 }
 
 type QQwry struct {
@@ -45,17 +48,13 @@ func NewQQwry(filePath string) (*QQwry, error) {
 		}
 	}
 
-	if len(fileData) < 8 {
+	if !CheckFile(fileData) {
 		log.Fatalln("纯真 IP 库存在错误，请重新下载")
 	}
 
 	header := fileData[0:8]
 	start := binary.LittleEndian.Uint32(header[:4])
 	end := binary.LittleEndian.Uint32(header[4:])
-
-	if uint32(len(fileData)) < end+7 {
-		log.Fatalln("纯真 IP 库存在错误，请重新下载")
-	}
 
 	return &QQwry{
 		IPDB: wry.IPDB[uint32]{
@@ -89,4 +88,24 @@ func (db QQwry) Find(query string, params ...string) (result fmt.Stringer, err e
 	reader := wry.NewReader(db.Data)
 	reader.Parse(offset + 4)
 	return reader.Result.DecodeGBK(), nil
+}
+
+func (db QQwry) Name() string {
+	return "qqwry"
+}
+
+func CheckFile(data []byte) bool {
+	if len(data) < 8 {
+		return false
+	}
+
+	header := data[0:8]
+	start := binary.LittleEndian.Uint32(header[:4])
+	end := binary.LittleEndian.Uint32(header[4:])
+
+	if start >= end || uint32(len(data)) < end+7 {
+		return false
+	}
+
+	return true
 }
