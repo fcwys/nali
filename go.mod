@@ -5,6 +5,7 @@ go 1.19
 require (
 	github.com/adrg/xdg v0.4.0
 	github.com/fatih/color v1.15.0
+	github.com/gin-gonic/gin v1.9.1
 	github.com/google/go-github/v55 v55.0.0
 	github.com/google/martian v2.1.0+incompatible
 	github.com/ip2location/ip2location-go/v9 v9.6.0
@@ -26,7 +27,6 @@ require (
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.2 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
-	github.com/gin-gonic/gin v1.9.1 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-playground/validator/v10 v10.14.0 // indirect
