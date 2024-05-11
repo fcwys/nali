@@ -14,13 +14,13 @@ jobs:
       - name: Check out code into the Go module directory
         uses: actions/checkout@v4
 
-      # - name: Cache go module
-        # uses: actions/cache@v4
-        # with:
-          # path: ~/go/pkg/mod
-          # key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-          # restore-keys: |
-            # ${{ runner.os }}-go-
+      - name: Cache go module
+        uses: actions/cache@v4
+        with:
+          path: ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
 
       - name: Get dependencies and run test
         run: |
