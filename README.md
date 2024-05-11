@@ -59,6 +59,22 @@ $ go install github.com/zu1k/nali@latest
 
 ## 使用说明
 
+### 启动Web API服务
+
+```
+# 默认端口8080
+$ nali server
+# 自定义端口
+$ nali server --port 9090
+# 输出结果示例
+{
+    "code": 1,
+    "ip": "223.5.5.5",
+    "addr": "中国 浙江省 杭州市 阿里云",
+    "cdn": ""
+}
+```
+
 ### 查询一个IP的地理信息
 
 ```
@@ -174,7 +190,7 @@ Address: 2001:428:6402:21b::6 [美国Louisiana州Monroe Qwest Communications Com
 
 ## 用户交互
 
-程序第一次运行后，会在工作目录生成配置文件 `config.yaml` (默认`~/.nali/config.yaml`)，配置文件定义了数据库信息，默认用户无需进行修改
+程序第一次运行后，会在 config 目录生成配置文件 `config.yaml` (使用 `nali info` 来查看具体信息)，配置文件定义了数据库信息，默认用户无需进行修改
 
 数据库格式默认如下：
 

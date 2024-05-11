@@ -55,12 +55,13 @@ func NewIp2Region(filePath string) (*Ip2Region, error) {
 
 func (db Ip2Region) Find(query string, params ...string) (result fmt.Stringer, err error) {
 	if db.seacher != nil {
-		res, err := db.seacher.SearchByStr(query)
+		res, err := db.seacher.SearchByStr(query)		
+		res=strings.ReplaceAll(res, "|", " ")
 		if err != nil {
 			return nil, err
 		} else {
 			return wry.Result{
-				Country: strings.ReplaceAll(res, "|0", ""),
+				Country: strings.ReplaceAll(res, " 0", ""),
 			}, nil
 		}
 	}
