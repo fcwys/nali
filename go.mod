@@ -9,6 +9,7 @@ require (
 	github.com/google/martian v2.1.0+incompatible
 	github.com/ip2location/ip2location-go/v9 v9.6.0
 	github.com/ipipdotnet/ipdb-go v1.3.3
+	github.com/labstack/echo/v4 v4.11.1
 	github.com/lionsoul2014/ip2region/binding/golang v0.0.0-20230731060429-6ed8bf011875
 	github.com/oschwald/geoip2-golang v1.9.0
 	github.com/saracen/go7z v0.0.0-20191010121135-9c09b6bd7fda
@@ -25,7 +26,6 @@ require (
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
-	github.com/labstack/echo/v4 v4.11.1 // indirect
 	github.com/labstack/gommon v0.4.0 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
