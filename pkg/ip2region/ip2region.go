@@ -57,6 +57,7 @@ func (db Ip2Region) Find(query string, params ...string) (result fmt.Stringer, e
 	if db.seacher != nil {
 		res, err := db.seacher.SearchByStr(query)		
 		res=strings.ReplaceAll(res, "|", " ")
+		res=strings.ReplaceAll(res, "\t", " ")
 		if err != nil {
 			return nil, err
 		} else {
