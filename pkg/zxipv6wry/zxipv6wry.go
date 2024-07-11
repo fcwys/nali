@@ -8,6 +8,7 @@ import (
 	"log"
 	"net"
 	"os"
+	"strings"
 
 	"github.com/zu1k/nali/pkg/wry"
 )
@@ -79,6 +80,7 @@ func (db *ZXwry) Find(query string, _ ...string) (result fmt.Stringer, err error
 	offset := db.SearchIndexV6(ipu64)
 	reader := wry.NewReader(db.Data)
 	reader.Parse(offset)
+	reader.Result.Country = strings.ReplaceAll(reader.Result.Country, "\t", " ")
 	return reader.Result, nil
 }
 
