@@ -55,9 +55,10 @@ func NewIp2Region(filePath string) (*Ip2Region, error) {
 
 func (db Ip2Region) Find(query string, params ...string) (result fmt.Stringer, err error) {
 	if db.seacher != nil {
-		res, err := db.seacher.SearchByStr(query)		
-		res=strings.ReplaceAll(res, "|", " ")
-		res=strings.ReplaceAll(res, "\t", " ")
+		res, err := db.seacher.SearchByStr(query)
+		res = strings.ReplaceAll(res, "|", " ")		//替换分割符为空格
+		res = strings.ReplaceAll(res, "\t", " ")	//替换制表符为空格
+		res = strings.ReplaceAll(res, "–", " ")		//替换纯真分隔符为空格
 		if err != nil {
 			return nil, err
 		} else {
