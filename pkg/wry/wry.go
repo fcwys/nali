@@ -98,6 +98,7 @@ func (r *Result) DecodeGBK() *Result {
 }
 
 func (r *Result) Trim() *Result {
+	r.Country = strings.TrimSpace(strings.ReplaceAll(r.Country, "–", " ")) //替换纯真IP分隔符为空格
 	r.Country = strings.TrimSpace(strings.ReplaceAll(r.Country, "CZ88.NET", ""))
 	r.Area = strings.TrimSpace(strings.ReplaceAll(r.Area, "CZ88.NET", ""))
 	return r
